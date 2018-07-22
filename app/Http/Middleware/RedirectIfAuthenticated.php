@@ -18,9 +18,13 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            session()->flash("info","您已登录，请勿重复操作");
+            return redirect()->route("user.index");
         }
-
+        if (Auth::guard("admin")->check()) {
+            session()->flash("info","您已登录，请勿重复操作");
+            return redirect()->route("admin.index");
+        }
         return $next($request);
     }
 }

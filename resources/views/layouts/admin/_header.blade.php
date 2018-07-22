@@ -26,21 +26,19 @@
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                @auth
+                @auth('admin')
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{\Illuminate\Support\Facades\Auth::guard('admin')->user()->name}} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="/">注销</a></li>
+                            <li><a href="{{route('admin.logout')}}">注销</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                            <li><a href="{{route('admin.update')}}">修改个人密码</a></li>
                         </ul>
                     </li>
                 @endauth
 
-                @guest
-                        <li><a href="/">登录</a></li>
+                @guest('admin')
+                        <li><a href="{{route('admin.login')}}">登录</a></li>
                 @endguest
 
 

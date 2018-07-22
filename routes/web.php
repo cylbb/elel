@@ -27,6 +27,14 @@ Route::domain('admin.eleb.com')->namespace('Admin')->group(function () {
     Route::any('shop/edit/{id}',"ShopController@edit")->name('shop.edit');
     Route::get('shop/del/{id}',"ShopController@del")->name('shop.del');
     Route::any('shop/check/{id}',"ShopController@check")->name('shop.check');
+    //管理员账号管理
+    Route::get('admin/index',"AdminController@index")->name('admin.index');
+    Route::any('admin/reg',"AdminController@reg")->name('admin.reg');
+    Route::any('admin/edit/{id}',"AdminController@edit")->name('admin.edit');
+    Route::get('admin/del/{id}',"AdminController@del")->name('admin.del');
+    Route::any('admin/login',"AdminController@login")->name('admin.login');
+    Route::any('admin/logout',"AdminController@logout")->name('admin.logout');
+    Route::any('admin/update',"AdminController@update")->name('admin.update');
 });
 //商家
 Route::domain('shop.eleb.com')->namespace('Shop')->group(function () {
@@ -35,5 +43,7 @@ Route::domain('shop.eleb.com')->namespace('Shop')->group(function () {
     Route::any('user/reg',"UserController@reg")->name('user.reg');
     Route::any('user/edit/{id}',"UserController@edit")->name('user.edit');
     Route::get('user/del/{id}',"UserController@del")->name('user.del');
-    Route::any('user/login',"UserController@login")->name('login');
+    Route::any('user/login',"UserController@login")->name('user.login');
+    Route::any('user/logout',"UserController@logout")->name('user.logout');
+    Route::any('user/update',"UserController@update")->name('user.update');
 });

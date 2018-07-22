@@ -11,4 +11,7 @@ class Shop extends Model
     public function cate(){
       return $this->belongsTo(ShopCategory::class,'shop_category_id');
     }
+    public function user(){
+        return $this->hasOne(User::class,'id');
+    }
 }

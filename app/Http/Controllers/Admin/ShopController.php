@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Shop;
 use App\Models\ShopCategory;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -34,7 +35,6 @@ class ShopController extends Controller
                 'shop_name'=>'required|min:2',
                 'start_send'=>'required',
                 'send_cost'=>'required',
-                'captcha'=> 'required|captcha'
             ]);
             //得到数据
             $data=$request->all();
@@ -46,7 +46,14 @@ class ShopController extends Controller
                 //判断有木有图片，如果有就上传，如果没有就为空
                 $data['shop_logo']=$fileName;
             }
-            Shop::create($data);
+            $shop=Shop::create($data);
+            User::create([
+                'shop_id'=>$shop->id,
+                'name'=>$request->post('name'),
+                'email'=>$request->post('email'),
+                'password'=>bcrypt($request->post('password')),
+                'status'=>0
+            ]);
             //跳转
             return redirect()->route('shop.index');
         }
@@ -63,6 +70,7 @@ class ShopController extends Controller
          $cates=ShopCategory::all();
          //通过id找到数据
          $shop=Shop::find($id);
+         $user = User::find($id);
          //判断提交方式是不是post提交
          if($request->isMethod('post')){
              $this->validate($request,[
@@ -88,13 +96,14 @@ class ShopController extends Controller
              }
              //修改数据
              $shop->update($data);
+             $user->update($data);
              //信息提示
              $request->session()->flash('success',"编辑成功");
              //跳转
              return redirect()->route('shop.index');
          }
          //显示视图
-         return view('admin.shop.edit',compact('shop','cates'));
+         return view('admin.shop.edit',compact('shop','cates'),compact('user'));
      }
 
     /**
@@ -106,11 +115,20 @@ class ShopController extends Controller
      public function del(Request $request,$id){
          //通过id找到数据
          $shop=Shop::find($id);
+         $user = User::find($id);
          @unlink($shop->shop_logo);
          $shop->delete();
+         $user->delete();
          //跳转
          return redirect()->route('shop.index');
      }
+
+    /**
+     * 审核
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
      public function check(Request $request,$id){
          //通过id找到数据
          $shop=Shop::find($id);
