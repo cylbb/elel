@@ -32,7 +32,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="#">Action</a></li>
                             <li><a href="#">Another action</a></li>
-                            <li><a href="{{route('users.logout')}}">注销</a></li>
+                            <li><a href="/">注销</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">Separated link</a></li>
                         </ul>

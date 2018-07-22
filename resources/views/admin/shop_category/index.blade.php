@@ -19,7 +19,13 @@
                         <img src="/uploads/{{$cate->logo}}" width="40px" height="50">
                     @endif
                 </td>
-                <td>{{$cate->status}}</td>
+                <td>
+                    @if($cate->status)
+                        <i class="glyphicon glyphicon-ok" style="color: green"></i>
+                        @else
+                        <i class="glyphicon glyphicon-remove" style="color: red"></i>
+                    @endif
+                </td>
                 <td>
                     <a href="{{route('shop_category.edit',$cate)}}" class="btn btn-primary">编辑</a>
                     <a href="{{route('shop_category.del',$cate)}}" class="btn btn-danger">删除</a>
