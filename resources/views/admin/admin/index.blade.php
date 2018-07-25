@@ -20,4 +20,5 @@
             </tr>
         @endforeach
     </table>
+    {{$admins->links()}}
 @endsection
