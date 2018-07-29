@@ -7,15 +7,17 @@ use App\Models\MenuCategorie;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
-class MenuController extends Controller
+class MenuController extends BaseController
 {
     /**
      * 列表
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(){
+        $shopId=Auth::user()->shop_id;
         //接受参数
         $minPrice=\request()->input('minPrice');
         $maxPrice=\request()->input('maxPrice');
@@ -39,7 +41,7 @@ class MenuController extends Controller
             $query=$query->where('category_id','=',$cateId);
 
         }
-        $menus=$query->paginate(3);
+        $menus=$query->where('shop_id',$shopId)->paginate(3);
         $cates=MenuCategorie::all();
 
         //显示视图

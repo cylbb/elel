@@ -7,16 +7,18 @@ use App\Models\MenuCategorie;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-class MenuCateController extends Controller
+class MenuCateController extends BaseController
 {
     /**
      * 列表
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(){
+        $shopId=Auth::user()->shop_id;
         //得到所有得数据
-        $cates=MenuCategorie::paginate(3);
+        $cates=MenuCategorie::where('shop_id',$shopId)->paginate(3);
         //显示视图
         return view('shop.menu_cate.index',compact('cates'));
     }

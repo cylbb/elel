@@ -22,7 +22,7 @@
                         <li role="separator" class="divider"></li>
                         <li><a href="{{route('shop.index')}}">商家信息表</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="{{route('activity.index')}}">活动列表</a></li>
+                        <li><a href="{{route('activitys.index')}}">活动列表</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

@@ -16,10 +16,11 @@ class UserController extends BaseController
     public function index()
     {
         //得到所有的数据
-        $users=User::all();
-        $shops=Shop::all();
+        $shopId=Auth::user()->shop_id;
+        //$users=User::where('shop_id',$shopId)->get();
+        $shops=Shop::where('id',$shopId)->get();
         //显示视图
-        return view("shop.user.index", compact('users','shops'));
+        return view("shop.user.index", compact('shops'));
     }
 
     /**
