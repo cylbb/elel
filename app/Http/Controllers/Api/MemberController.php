@@ -33,7 +33,7 @@ class MemberController extends Controller
         $aliSms=new AliSms();
 
         $response = $aliSms->sendSms($tel, 'SMS_140665169', ['code'=> $code], $config);
-//        dd($response);
+// dd($response);
         if($response->Message==="OK"){
             return [
                 "status"=>"true",
@@ -93,6 +93,7 @@ class MemberController extends Controller
         }
         //给密码加密
         $data['password']=bcrypt($data['password']);
+//        dd($data);
         //插入数据
         Member::create($data);
             //返回信息
@@ -101,7 +102,7 @@ class MemberController extends Controller
                 //获取错误信息
                 "message" => "注册成功"
             ];
-
+//          var_dump($data);exit;
 
    }
 
@@ -112,6 +113,7 @@ class MemberController extends Controller
      */
    public function login(Request $request){
        $member = Member::where("username", $request->post('name'))->first();
+//       dd($member);
        if ($member && Hash::check($request->post('password'), $member->password)) {
            return [
                'status' => 'true',
@@ -196,6 +198,16 @@ class MemberController extends Controller
                 "message" => "修改成功"
             ];
             }
+    }
+
+    /**
+     * 用户信息
+     * @param Request $request
+     * @return mixed
+     */
+    public function detail(Request $request)
+    {
+        return Member::find($request->input('user_id'));
     }
 
     }
