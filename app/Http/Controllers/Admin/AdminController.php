@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends BaseController
 {
@@ -38,14 +39,14 @@ class AdminController extends BaseController
             //加密密码
             $data['password']=bcrypt($data['password']);
             //插入数据
-            Admin::create($data);
+            $admin=Admin::create($data);
+            $admin->syncRoles($request->post('role'));
             //提示信息
-            $request->session()->flash('success',"注册成功");
-            //跳转
-            return redirect()->route('admin.login');
+            return redirect()->route('admin.login')->with('success','创建'.$admin->name."成功");
         }
+        $roles=Role::all();
         //显示视图
-        return view('admin.admin.reg');
+        return view('admin.admin.reg',compact('roles'));
     }
 
     /**
@@ -93,14 +94,15 @@ class AdminController extends BaseController
                 'email' => "required|max:255"
             ]);
             //更新数据
-            $admin->update($request->all());
+            $data=$request->all();
+            $admin->update($data);
+            $admin->syncRoles($request->post('role'));
             //提示
-            $request->session()->flash("success", "管理员编辑成功");
-            //跳转
-            return redirect()->route("admin.index");
+            return redirect()->route('admin.index')->with('success','创建'.$admin->name."成功");
         }
+        $roles=Role::all();
         //显示视图
-        return view('admin.admin.edit',compact('admin'));
+        return view('admin.admin.edit',compact('admin','roles'));
     }
 
     /**
@@ -144,7 +146,17 @@ class AdminController extends BaseController
             }
         return view('admin.admin.update');
     }
+
+    /**
+     * 删除
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
        public function del(Request $request,$id){
+           if ($id == 1) {
+               return back()->with("danger", "1不能删除");
+           }
            //通过id找到对象
            $admin = Admin::findOrFail($id);
            //删除数据

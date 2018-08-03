@@ -1,0 +1,77 @@
+@extends("layouts.shop.default")
+@section('title',"订单详情")
+@section("content")
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <td>{{$order->id}}</td>
+        </tr>
+        <tr>
+            <th>所属商家</th>
+            <td>{{$order->shop->shop_name}}</td>
+        </tr>
+           <tr>
+               <th>货号</th>
+               <td>{{$order->sn}}</td>
+           </tr>
+        <tr>
+            <th>价格</th>
+            <td>{{$order->order_price}}</td>
+        </tr>
+           <tr>
+               <th>名字</th>
+               <td>{{$order->name}}</td>
+           </tr>
+           <tr>
+               <th>电话</th>
+               <td>{{$order->tel}}</td>
+           </tr>
+        <tr>
+            <th>地址</th>
+            <td>{{$order->province}}
+                {{$order->city}}
+                {{$order->county}}
+                {{$order->address}}
+            </td>
+        </tr>
+        <tr>
+            <th>状态</th>
+            <td>@if($order->status==-1)
+                    <i>已取消</i>
+                @elseif($order->status==0)
+                    <i>代付款</i>
+                @elseif($order->status==1)
+                    <i>待发货</i>
+                @elseif($order->status==2)
+                    <i>待确认</i>
+                @elseif($order->status==3)
+                    <i>完成</i>
+                @endif
+            </td>
+        </tr>
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <th>菜品名称</th>
+                    <th>数量</th>
+                    <th>菜品图片</th>
+                    <th>菜品价格</th>
+                </tr>
+                @foreach($goods as $good)
+                    <tr>
+                        <td>{{$good->goods_name}}</td>
+                        <td>{{$good->amount}}</td>
+                        <td>
+                            @if($good->goods_img)
+                                <img src="{{$good->goods_img}}" width="50" class="img-circle">
+                            @endif
+                        </td>
+                        <td>{{$good->goods_price}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </table>
+@endsection

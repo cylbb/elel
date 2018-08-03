@@ -29,6 +29,23 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理员管理<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{route('admin.index')}}">管理员列表</a></li>
+                        <li><a href="{{route('member.index')}}">会员列表</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">商家订单管理<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{route('orders.total')}}">商家订单统计</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{route('orders.day')}}">商家订单每日统计</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{route('orders.month')}}">商家订单每月统计</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{route('orders.goodTotal')}}">菜品统计</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{route('orders.goodDay')}}">菜品每日统计</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{route('orders.goodMonth')}}">菜品每月统计</a></li>
                     </ul>
                 </li>
                 <li><a href="/">关于我们</a></li>

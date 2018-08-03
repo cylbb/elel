@@ -6,7 +6,7 @@ use App\Models\ShopCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ShopCategoryController extends Controller
+class ShopCategoryController extends BaseController
 {
     /**
      * 列表

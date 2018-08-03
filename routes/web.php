@@ -43,6 +43,29 @@ Route::domain('admin.eleb.com')->namespace('Admin')->group(function () {
     Route::get('activity/unStart',"ActivityController@unStart")->name('activity.unStart');
     Route::get('activity/going',"ActivityController@going")->name('activity.going');
     Route::get('activity/over',"ActivityController@over")->name('activity.over');
+    //商家订单
+    Route::any('order/index',"OrderController@index")->name('orders.index');
+    Route::any('order/day',"OrderController@day")->name('orders.day');
+    Route::any('order/month',"OrderController@month")->name('orders.month');
+    Route::any('order/total',"OrderController@total")->name('orders.total');
+    Route::any('order/goodDay',"OrderController@goodDay")->name('orders.goodDay');
+    Route::any('order/goodMonth',"OrderController@goodMonth")->name('orders.goodMonth');
+    Route::any('order/goodTotal',"OrderController@goodTotal")->name('orders.goodTotal');
+    //会员管理
+    Route::any('member/index',"MemberController@index")->name('member.index');
+    Route::any('member/info/{id}',"MemberController@info")->name('member.info');
+    Route::any('member/check/{id}',"MemberController@check")->name('member.check');
+
+    //权限管理
+    Route::get('per/index',"PerController@index")->name('per.index');
+    Route::any('per/add',"PerController@add")->name('per.add');
+    Route::get('per/del/{id}',"PerController@del")->name('per.del');
+
+    //给角色添加权限
+    Route::get('role/index',"RoleController@index")->name('role.index');
+    Route::any('role/add',"RoleController@add")->name('role.add');
+    Route::any('role/edit/{id}',"RoleController@edit")->name('role.edit');
+    Route::any('role/del/{id}',"RoleController@del")->name('role.del');
 });
 //商家
 Route::domain('shop.eleb.com')->namespace('Shop')->group(function () {
@@ -67,4 +90,16 @@ Route::domain('shop.eleb.com')->namespace('Shop')->group(function () {
     //活动列表
     Route::get('activity/index',"ActivityController@index")->name('activity.index');
     Route::any('activity/show/{id}',"ActivityController@show")->name('activity.show');
+    //订单统计
+    Route::get('order/index',"OrderController@index")->name('order.index');
+    Route::any('order/show/{id}',"OrderController@show")->name('order.show');
+    Route::any('order/cancel/{id}',"OrderController@cancel")->name('order.cancel');
+    Route::any('order/send/{id}',"OrderController@send")->name('order.send');
+    Route::any('order/day',"OrderController@day")->name('order.day');
+    Route::any('order/month',"OrderController@month")->name('order.month');
+    Route::any('order/total',"OrderController@total")->name('order.total');
+    Route::any('order/goodDay',"OrderController@goodDay")->name('order.goodDay');
+    Route::any('order/goodMonth',"OrderController@goodMonth")->name('order.goodMonth');
+//    Route::any('order/sum',"OrderController@sum")->name('order.sum');
+
 });

@@ -7,7 +7,7 @@ use App\Models\Menu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CartController extends Controller
+class CartController extends BaseController
 {
     /**
      * @param Request $request

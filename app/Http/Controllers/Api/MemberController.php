@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
 use Mrgoon\AliSms\AliSms;
 
-class MemberController extends Controller
+class MemberController extends BaseController
 {
        //设置短信验证
     public function sms(){

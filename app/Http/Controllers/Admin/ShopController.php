@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ShopController extends Controller
+class ShopController extends BaseController
 {
     /**
      * 列表

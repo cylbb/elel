@@ -30,7 +30,25 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="active treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>订单管理</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{route('order.total')}}"><i class="fa fa-circle-o"></i>订单展示</a></li>
+                    <li class="active"><a href="{{route('order.index')}}"><i class="fa fa-circle-o"></i>订单列表</a></li>
+                    <li class="active"><a href="{{route('order.day')}}"><i class="fa fa-circle-o"></i>订单每日统计表</a></li>
+                    <li class="active"><a href="{{route('order.month')}}"><i class="fa fa-circle-o"></i>订单每月统计表</a></li>
+                    <li class="active"><a href="{{route('order.goodDay')}}"><i class="fa fa-circle-o"></i>菜品每日统计表</a></li>
+                    <li class="active"><a href="{{route('order.goodMonth')}}"><i class="fa fa-circle-o"></i>菜品每月统计表</a></li>
+                    {{--<li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>--}}
+                </ul>
+                </ul>
+        <ul class="sidebar-menu" data-widget="tree">
             <li class="active treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i>
@@ -43,40 +61,37 @@
                     <li class="active"><a href="{{route('user.index')}}"><i class="fa fa-circle-o"></i> 商家信息列表</a></li>
                     {{--<li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>--}}
                 </ul>
+        </ul>
             </li>
-            <li class="treeview">
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="active treeview">
                 <a href="#">
-                    <i class="fa fa-files-o"></i>
+                    <i class="fa fa-dashboard"></i>
                     <span>商家商品列表</span>
                     <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('cate.index')}}"><i class="fa fa-circle-o"></i> 菜品分类列表</a></li>
-                    <li><a href="{{route('menu.index')}}"><i class="fa fa-circle-o"></i> 菜品列表</a></li>
+                    <li class="active"><a href="{{route('cate.index')}}"><i class="fa fa-circle-o"></i> 菜品分类列表</a></li>
+                    <li class="active"><a href="{{route('menu.index')}}"><i class="fa fa-circle-o"></i> 菜品列表</a></li>
+                    {{--<li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>--}}
                 </ul>
-            </li>
-            <li>
-                {{--<a href="pages/widgets.html">--}}
-                    {{--<i class="fa fa-th"></i> <span>活动管理</span>--}}
-                    {{--<span class="pull-right-container">--}}
-              {{--<small class="label pull-right bg-green">活动详情</small>--}}
-            {{--</span>--}}
-                {{--</a>--}}
-            </li>
-            <li class="treeview">
+        </ul>
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="active treeview">
                 <a href="#">
-                    <i class="fa fa-pie-chart"></i>
+                    <i class="fa fa-dashboard"></i>
                     <span>活动管理</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('activity.index')}}"><i class="fa fa-circle-o"></i> 活动列表</a></li>
-                    {{--<li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>--}}
-                    {{--<li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>--}}
-                    {{--<li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>--}}
+                    <li class="active"><a href="{{route('activity.index')}}"><i class="fa fa-circle-o"></i> 活动列表</a></li>
+            <li>
+                            {{--<li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>--}}
+                        </ul>
                 </ul>
             </li>
             <li class="treeview">

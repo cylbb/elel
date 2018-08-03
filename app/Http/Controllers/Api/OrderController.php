@@ -10,8 +10,9 @@ use App\Models\Order;
 use App\Models\OrderGood;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
-class OrderController extends Controller
+class OrderController extends BaseController
 {
     /**
      * 订单列表
@@ -76,23 +77,39 @@ class OrderController extends Controller
         $data['order_price']= $totalCost;
         //判断状态
         $data['status']=0;
-        //生成订单
-        $order=Order::create($data);
-        //添加订单商品
+        //开启事务
+        DB::beginTransaction();
+        try{
+            //生成订单
+            $order=Order::create($data);
+            //添加订单商品
 //        dd($carts);
-        foreach ($carts as $k1=>$v1){
-            //找到所属商品编号
-            $good=Menu::find($v1->goods_id);
-            //插入数据
-            $dataGoods['order_id']=$order->id;
-            $dataGoods['goods_id']=$v1->goods_id;
-            $dataGoods['amount']=$v1->amount;
-            $dataGoods['goods_name']=$good->goods_name;
-            $dataGoods['goods_img']="/uploads/".$good->goods_logo;
-            $dataGoods['goods_price']=$good->goods_price;
+            foreach ($carts as $k1=>$v1){
+                //找到所属商品编号
+                $good=Menu::find($v1->goods_id);
+                //插入数据
+                $dataGoods['order_id']=$order->id;
+                $dataGoods['goods_id']=$v1->goods_id;
+                $dataGoods['amount']=$v1->amount;
+                $dataGoods['goods_name']=$good->goods_name;
+                $dataGoods['goods_img']="/uploads/".$good->goods_logo;
+                $dataGoods['goods_price']=$good->goods_price;
 //            dd($good);
-            //插入数据
-            OrderGood::create($dataGoods);
+                //插入数据
+                OrderGood::create($dataGoods);
+            }
+            //清空当前用户购物车
+            Cart::where("user_id",$request->post('user_id'))->delete();
+            //提交
+            DB::commit();
+        }catch (QueryException $exception){
+            //回滚
+            DB::rollBack();
+            //返回数据
+            return [
+                "status" => "false",
+                "message" => $exception->getMessage(),
+            ];
         }
         //返回
         return [
@@ -121,6 +138,12 @@ class OrderController extends Controller
         $data['goods_list']=$order->goods;
         return $data;
     }
+
+    /**
+     * 支付
+     * @param Request $request
+     * @return array
+     */
     public function pay(Request $request){
         //得到订单号
         $order=Order::find($request->post('id'));
