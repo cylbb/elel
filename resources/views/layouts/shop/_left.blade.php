@@ -67,15 +67,15 @@
             <li class="active treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i>
-                    <span>商家商品列表</span>
+                    <span>抽奖活动列表</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{route('cate.index')}}"><i class="fa fa-circle-o"></i> 菜品分类列表</a></li>
-                    <li class="active"><a href="{{route('menu.index')}}"><i class="fa fa-circle-o"></i> 菜品列表</a></li>
-                    {{--<li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>--}}
+                    <li class="active"><a href="{{route('event.index')}}"><i class="fa fa-circle-o"></i> 抽奖活动</a></li>
+                    <li class="active"><a href="{{route('prize.index')}}"><i class="fa fa-circle-o"></i> 抽奖结果列表</a></li>
+                    <li class="active"><a href="{{route('eventUser.index')}}"><i class="fa fa-circle-o"></i> 抽奖活动报名列表</a></li>
                 </ul>
         </ul>
         <ul class="sidebar-menu" data-widget="tree">
@@ -94,64 +94,22 @@
                         </ul>
                 </ul>
             </li>
-            <li class="treeview">
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="active treeview">
                 <a href="#">
-                    <i class="fa fa-laptop"></i>
-                    <span>UI Elements</span>
+                    <i class="fa fa-dashboard"></i>
+                    <span>商家商品列表</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-                    <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-                    <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-                    <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-                    <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-                    <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+                    <li class="active"><a href="{{route('cate.index')}}"><i class="fa fa-circle-o"></i> 菜品分类列表</a></li>
+                    <li class="active"><a href="{{route('menu.index')}}"><i class="fa fa-circle-o"></i> 菜品列表</a></li>
+                    {{--<li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>--}}
                 </ul>
-            </li>
-            {{--<li class="treeview">--}}
-                {{--<a href="#">--}}
-                    {{--<i class="fa fa-edit"></i> <span>Forms</span>--}}
-                    {{--<span class="pull-right-container">--}}
-              {{--<i class="fa fa-angle-left pull-right"></i>--}}
-            {{--</span>--}}
-                {{--</a>--}}
-                {{--<ul class="treeview-menu">--}}
-                    {{--<li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>--}}
-                    {{--<li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>--}}
-                    {{--<li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
-            {{--<li class="treeview">--}}
-                {{--<a href="#">--}}
-                    {{--<i class="fa fa-table"></i> <span>Tables</span>--}}
-                    {{--<span class="pull-right-container">--}}
-              {{--<i class="fa fa-angle-left pull-right"></i>--}}
-            {{--</span>--}}
-                {{--</a>--}}
-                {{--<ul class="treeview-menu">--}}
-                    {{--<li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>--}}
-                    {{--<li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
-            {{--<li>--}}
-                {{--<a href="pages/calendar.html">--}}
-                    {{--<i class="fa fa-calendar"></i> <span>Calendar</span>--}}
-                    {{--<span class="pull-right-container">--}}
-              {{--<small class="label pull-right bg-red">3</small>--}}
-              {{--<small class="label pull-right bg-blue">17</small>--}}
-            {{--</span>--}}
-                {{--</a>--}}
-            {{--</li>--}}
-            {{--<li>--}}
-                {{--<a href="pages/mailbox/mailbox.html">--}}
-                    {{--<i class="fa fa-envelope"></i> <span>Mailbox</span>--}}
-                    {{--<span class="pull-right-container">--}}
-              {{--<small class="label pull-right bg-yellow">12</small>--}}
-              {{--<small class="label pull-right bg-green">16</small>--}}
-              {{--<small class="label pull-right bg-red">5</small>--}}
+        </ul>
+
             </span>
                 </a>
             {{--</li>--}}
