@@ -118,7 +118,8 @@ class ShopController extends BaseController
      public function del(Request $request,$id){
          //通过id找到数据
          $shop=Shop::find($id);
-         $user = User::find($id);
+         $user = User::where('shop_id',$id)->first();
+//         dd($user);
          @unlink($shop->shop_logo);
          $shop->delete();
          $user->delete();
