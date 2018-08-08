@@ -19,6 +19,7 @@ class UserController extends BaseController
         $shopId=Auth::user()->shop_id;
         //$users=User::where('shop_id',$shopId)->get();
         $shops=Shop::where('id',$shopId)->get();
+//        dd($shops);
         //显示视图
         return view("shop.user.index", compact('shops'));
     }
