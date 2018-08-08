@@ -11,6 +11,7 @@ use App\Models\OrderGood;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Mrgoon\AliSms\AliSms;
 
 class OrderController extends BaseController
 {
@@ -162,6 +163,14 @@ class OrderController extends BaseController
         //更改状态
         $order->status=1;
         $order->save();
+        $config = [
+            'access_key' => 'LTAIOGdyO3op8DD5',
+            'access_secret' => '6F7b00WOb9HpEn2GM1Zv0AEhHE4pxO',
+            'sign_name' => '陈玉铃',
+        ];
+        $aliSms=new AliSms();
+
+        $response = $aliSms->sendSms($member->tel, 'SMS_141650132', ['product'=> $order->sn], $config);
         return [
             "status" => "true",
             "message" => "支付成功",

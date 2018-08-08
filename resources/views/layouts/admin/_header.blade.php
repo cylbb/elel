@@ -15,39 +15,19 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="{{route('admin.index')}}">首页 <span class="sr-only">(current)</span></a></li>
+                @foreach(\App\Models\Nav::where('parent_id',0)->get() as $k1=>$v1)
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">商家管理<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$v1->name}}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{route('shop_category.index')}}">商家分类管理</a></li>
+                        @foreach(\App\Models\Nav::where("parent_id",$v1->id)->get() as $k2=>$v2)
+                            {{--@if(\Illuminate\Support\Facades\Auth::guard('admin')->user()->can($v2->url))--}}
+                        <li><a href="{{route($v2->url)}}">{{$v2->name}}</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="{{route('shop.index')}}">商家信息表</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="{{route('activitys.index')}}">活动列表</a></li>
+                            {{--@endif--}}
+                            @endforeach
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理员管理<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{route('admin.index')}}">管理员列表</a></li>
-                        <li><a href="{{route('member.index')}}">会员列表</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">商家订单管理<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{route('orders.total')}}">商家订单统计</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="{{route('orders.day')}}">商家订单每日统计</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="{{route('orders.month')}}">商家订单每月统计</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="{{route('orders.goodTotal')}}">菜品统计</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="{{route('orders.goodDay')}}">菜品每日统计</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="{{route('orders.goodMonth')}}">菜品每月统计</a></li>
-                    </ul>
-                </li>
+                @endforeach
                 <li><a href="/">关于我们</a></li>
 
                 <li><a href="/">帮助</a></li>

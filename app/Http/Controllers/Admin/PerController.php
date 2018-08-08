@@ -15,7 +15,7 @@ class PerController extends Controller
     //添加权限
     public function add(){
         //添加权限
-        $per=Permission::create(['name'=>'admin.index','guard_name'=>'admin']);
+      $per=Permission::create(['name'=>'orders.goodMonth','guard_name'=>'admin']);
     }
     //删除权限
     public function del($id){
